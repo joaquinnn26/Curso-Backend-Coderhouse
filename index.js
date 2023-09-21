@@ -1,3 +1,4 @@
+import { error } from "console";
 import {  existsSync, promises} from "fs";
 
 
@@ -45,7 +46,13 @@ class productManager{
     getProductsById=async (id)=>{
         const productos=await this.getProducts();
         const buscador= productos.find((e)=>e.id===id)
-        return buscador
+        if (typeof buscador !== "undefined") {
+            return buscador;
+        }else {
+            return "id no encontrada"
+        }
+        
+
 
     }
         updateProduct=async(id,title,description,price,thumbnail,code,stock)=>{

@@ -3,27 +3,38 @@ import { productmanager } from "../index.js";
 
 const app = express();
 
+app.use (express.json())
 
 app.get("/api/products", async (req,res)=>{
     try {
-        let limit = req.query.limit; 
-        limit = parseInt(limit, 10); 
-    
-        if (isNaN(limit) || limit <= 0) {
-            return res.status(400).json({ error: 'Límite no válido' });
+        let limit = req.query.limit;
+        // Comprobar si limit es undefined o no se ha enviado
+        if (typeof limit === 'undefined') {
+        const productos = await productmanager.getProducts();
+        return res.json({ productos });
         }
     
+        
+        limit = parseInt(limit, 10);
+    
+        
+        if (isNaN(limit) || limit <= 0) {
+        return res.status(400).json({ error: "El valor de limit es inválido" });
+        }
+    
+        // Obtener la lista completa de productos
         const productos = await productmanager.getProducts();
     
-
+        // Limitar la lista de productos según el valor de limit
         const productosLimitados = productos.slice(0, limit);
     
         res.json({ message: "Resultado limitado", productos: productosLimitados });
-        } catch (error) {
+    } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Error al obtener los productos" });
+    }
         }
-    });
+    );
 
 
 
