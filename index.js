@@ -49,7 +49,7 @@ class productManager{
         if (typeof buscador !== "undefined") {
             return buscador;
         }else {
-            return "id no encontrada"
+            return "Id no econtrada"
         }
         
 
