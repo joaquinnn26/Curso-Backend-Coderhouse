@@ -1,5 +1,5 @@
 import { existsSync, promises } from "fs";
-import { error, log } from "console";
+import { Console, error, log } from "console";
 import { productsmanager } from "./productsManager.js";
 const path = "cartsFile.json";
 
@@ -34,8 +34,8 @@ class cartsManager {
 
             const newCart =  [...carts, { id: id, products: [] }];
 
-            await promises.writeFile(path, JSON.stringify(carts));
-            return newCart;
+            await promises.writeFile(path, JSON.stringify(newCart));
+
         } catch (error) {
             return error;
         }
@@ -43,7 +43,7 @@ class cartsManager {
 
     async getCartById(id) {
         try {
-            const carts = await this.getCarts();
+            const carts = await this.getCarts({});
 
             const Product = carts.find((u) => u.id === id);
 
@@ -62,36 +62,47 @@ class cartsManager {
                 const newArraycarts = carts.filter((u) => u.id != id);
                 await promises.writeFile(path, JSON.stringify(newArraycarts));
             return newArraycarts
+            }else{
+                return Product;
             }
-            return Product;
+            
         } catch (error) {
             return error;
         }
     }
 
     async addProductToCart(idCart,idProduct){
+        try {
         //validar
         const cartById = await this.getCartById(idCart)
         if(!cartById){
             return "cart not found";
         }
+
         //validar
         const product = await productsmanager.getProductById(idProduct)
         if(!product){
             return "product not found";
         }
-        const cartFilter = await this.deleteCart(idCart);
+
+
         const productIndex= cartById.products.findIndex(p=>p.id === idProduct)
         
+        const cartFilter = await this.deleteCart(idCart);
         if (productIndex !== -1) {
             cartById.products[productIndex].quantity++;
         } else {
             cartById.products.push({ productId: idProduct, quantity: 1 });
         }
 
-
     const newCarts = [{ ...cartById }, ...cartFilter];
     await promises.writeFile(path, JSON.stringify(newCarts));
+
+
+        } catch (error) {
+            throw error;
+        }
+
     }
 
 

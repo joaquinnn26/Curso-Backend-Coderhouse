@@ -40,7 +40,7 @@ router.get("/:cid",async (req,res)=>{
     }
 })
 
-router.post(":cid/products/:pid",async (req,res)=>{
+router.post("/:cid/products/:pid",async (req,res)=>{
     const { cid } = req.params;
     const { pid } = req.params;
 
