@@ -1,12 +1,44 @@
 <h3>handlebares</h3>
 
-<form action="" method="get">
-
-    title:<input type="text" name="" id="">
-    
-
+<form id="form">
+    <h1>FORMULARIO CREAR PRODUCTO</h1>
+    <br> </br>
+    title:<input type="text" name="title" id="title">
+    <br> </br>
+    description: <input type="text" name="description" id="description">
+    <br> </br>
+    price:  <input type="number" name="price" id="price">
+    <br> </br>
+    code: <input type="number" name="code" id="code">
+    <br> </br>
+    stock: <input type="number" name="stock" id="stock">
+    <br> </br>
+    category: <input type="text" name="category" id="category">
+    <br> </br>
+    Status:<input type="boolean" name="status" id="status">
+    <br> </br>
+    <input type="submit" value="Enter">
     
 </form>
+<br> </br>
+<div>
+    <form id="form-delete">
+    <h1>FORMULARIO PARA ELIMINAR PRODUCTO</h1>
+    <br> </br>
+    Ingrese Id del producto a eliminar: <input id="id-delete" type="number">
+    <input type="submit">
+    </form>
+</div>
 
+
+<div id="primerLista">
+
+
+</div>
+
+<div id="divRealTimeProduct">
+
+
+</div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>

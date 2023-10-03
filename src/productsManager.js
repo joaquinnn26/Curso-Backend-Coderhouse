@@ -86,47 +86,7 @@ class ProductManager {
     }
 }
 
-// PROBANDO LOS METODOS
 
-const Product1 = {
-    first_name: "Juan",
-    last_name: "Hoyos",
-    age: 40,
-    course: "JAVASCRIPT",
-    password: "12345",
-};
-
-const Product2 = {
-    first_name: "Luis",
-    last_name: "Abello",
-    age: 35,
-    course: "BACKEND",
-    password: "abcde",
-};
-
-const Product3 = {
-    first_name: "Carlos",
-    last_name: "Abello",
-    age: 35,
-    course: "BACKEND",
-    password: "abcde",
-};
-
-const Product4 = {
-    first_name: "Laura",
-    last_name: "Abello",
-    age: 35,
-    course: "BACKEND",
-    password: "abcde",
-};
-
-const Product5 = {
-    first_name: "Camila",
-    last_name: "Abello",
-    age: 35,
-    course: "BACKEND",
-    password: "abcde",
-};
 // async function test() {
 //   const manager = new productsManager();
 //   await manager.createProduct(Product1);
