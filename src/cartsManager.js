@@ -86,17 +86,20 @@ class cartsManager {
         }
 
 
-        const productIndex= cartById.products.findIndex(p=>p.id === idProduct)
-        
-        const cartFilter = await this.deleteCart(idCart);
+        const productIndex= cartById.products.findIndex((p)=>p.productId === idProduct)
+            
+
         if (productIndex !== -1) {
             cartById.products[productIndex].quantity++;
+            const newCarts = [{ ...cartById }];
+            await promises.writeFile(path, JSON.stringify(newCarts));
+            console.log("repetido")
         } else {
             cartById.products.push({ productId: idProduct, quantity: 1 });
+            const newCarts = [{ ...cartById }];
+            await promises.writeFile(path, JSON.stringify(newCarts));
+    
         }
-
-    const newCarts = [{ ...cartById }, ...cartFilter];
-    await promises.writeFile(path, JSON.stringify(newCarts));
 
 
         } catch (error) {

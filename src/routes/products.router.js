@@ -24,7 +24,7 @@ router.get("/", async (req,res)=>{
 router.get("/:pid", async (req,res)=>{
     const {pid}= req.params
     try {
-    const productoById=await productsmanager.getProductsById(+pid)
+    const productoById=await productsmanager.getProductById(+pid)
     res.status(200).json({message:"Producto:",productoById})   
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -33,8 +33,8 @@ router.get("/:pid", async (req,res)=>{
 
 
 router.post("/",async(req,res)=>{
-    const {tittle,description,price,code,stock,category,thumbnails} = req.body
-    if (!tittle || !description || !price || !code || !stock || !category || !thumbnails) {
+    const {title,description,price,code,stock,category,thumbnails} = req.body
+    if (!title || !description || !price || !code || !stock || !category || !thumbnails) {
         res.status(400).json({message: "not found"})
     }
     try {
@@ -71,4 +71,7 @@ router.delete("/:pid",async(req,res)=>{
     catch{
         res.status(500).json(error.message)
 }})
+
+
+
 export default router
