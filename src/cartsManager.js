@@ -91,17 +91,13 @@ class cartsManager {
 
         if (productIndex !== -1) {
             cartById.products[productIndex].quantity++;
-            const newCarts = [{ ...cartById }];
-            await promises.writeFile(path, JSON.stringify(newCarts));
-            console.log("repetido")
         } else {
-            cartById.products.push({ productId: idProduct, quantity: 1 });
-            const newCarts = [{ ...cartById }];
-            await promises.writeFile(path, JSON.stringify(newCarts));
-    
+            cartById.products.push({ productId: idProduct, quantity: 1 });  
         }
-
-
+        const carts= await this.getCarts({})
+        const cartIndex= carts.findIndex(cart=>cart.id === idCart)
+        carts[cartIndex]= cartById
+        await promises.writeFile(path,JSON.stringify(carts))
         } catch (error) {
             throw error;
         }
