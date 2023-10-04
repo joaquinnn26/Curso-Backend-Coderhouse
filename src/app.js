@@ -52,8 +52,8 @@ const allProducts= await productsmanager.getProducts({});
 
 
   });
-  socket.on(`productDeleted`,async (idDelete)=>{
-    const deletedById= await productsmanager.deleteProduct(idDelete);
+  socket.on(`productDeleted`,async (id)=>{
+    const deletedById= await productsmanager.deleteProduct(+id);
     const productosTotal= await productsmanager.getProducts({});
     console.log("adnadnosadas",deletedById);
     socket.emit(`productosNew`,productosTotal);

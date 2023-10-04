@@ -12,7 +12,7 @@ const primerListaProductos= (productos) =>{
     productos.forEach(product => { 
 
         html+= `
-            <h1>Producto Nro ${i+=1} </h1>
+            <h1>ID producto: ${product.id} </h1>
             <p>titulo: ${product.title}</p>
             <p>descripcion: ${product.description}</p>
             <p>precio: ${product.price}</p>
@@ -36,7 +36,7 @@ socketClient.on(`allProducts`,(productos)=>{
     productos.forEach(product => { 
 
         html+= `
-            <h1>Producto Nro ${i+=1} </h1>
+            <h1>ID producto: ${product.id} </h1>
             <p>titulo: ${product.title}</p>
             <p>descripcion: ${product.description}</p>
             <p>precio: ${product.price}</p>

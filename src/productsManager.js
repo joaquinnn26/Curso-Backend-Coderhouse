@@ -10,7 +10,7 @@ class ProductManager {
         try {
             if (existsSync(path)) {
                 const productsFile = await promises.readFile(path, "utf-8");
-                console.log("productsFile", productsFile);
+                
                 const productsData = JSON.parse(productsFile);
                 return limit ? productsData.slice(0, +limit) : productsData;
             } else {
